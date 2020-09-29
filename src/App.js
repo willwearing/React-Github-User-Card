@@ -7,12 +7,12 @@ const userName = "willwearing";
 class App extends React.Component {
   state = {
     user: [],
-    followers: [],
+    follower: [],
   };
 
   componentDidMount() {
     this.fetchUser(this.state.user);
-    this.fetchFollowers(this.state.followers);
+    this.fetchFollowers(this.state.follower);
   }
 
   fetchFollowers = () => {
@@ -21,9 +21,8 @@ class App extends React.Component {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         this.setState({
-          followers: data,
+          follower: data,
         });
       })
       .catch((err) => {
@@ -50,7 +49,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>GitHub Users of People we Like</h1>
-        <UserCard user={this.state.user} />
+        <UserCard user={this.state.user} follower={this.state.follower} />
       </div>
     );
   }
