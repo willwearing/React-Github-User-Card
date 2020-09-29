@@ -2,8 +2,6 @@ import React from "react";
 import UserCard from "./components/UserCard";
 import "./App.css";
 
-const userName = "willwearing";
-
 class App extends React.Component {
   state = {
     user: [],
@@ -25,10 +23,11 @@ class App extends React.Component {
   handleSearch = (e) => {
     e.preventDefault();
     this.fetchUser(this.state.userName);
+    this.fetchFollowers(this.state.follower);
   };
 
   fetchUser = (userName) => {
-    fetch(`https://api.github.com/users/${userName}`)
+    fetch(`https://api.github.com/users/${this.state.userName}`)
       .then((res) => {
         return res.json();
       })
@@ -43,7 +42,7 @@ class App extends React.Component {
   };
 
   fetchFollowers = () => {
-    fetch(`https://api.github.com/users/${userName}/followers`)
+    fetch(`https://api.github.com/users/${this.state.userName}/followers`)
       .then((res) => {
         return res.json();
       })
@@ -60,7 +59,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>GitHub Users of People we Like</h1>
+        <h1>GitHub User Profiles</h1>
         <form onSubmit={this.handleSearch}>
           <input
             onChange={this.handleChange}

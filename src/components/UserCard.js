@@ -1,7 +1,6 @@
 import React from "react";
 
 const UserCard = ({ user, follower }) => {
-  console.log(follower);
   return (
     <div className="userCard">
       <h2>Username: {user.name}</h2>
@@ -13,7 +12,7 @@ const UserCard = ({ user, follower }) => {
         <p>Here is a list of my followers: </p>
 
         <select>
-          <option></option>
+          <option>Select</option>
           {follower.map((fol) => (
             <option key={fol.id}>{fol.login}</option>
           ))}
